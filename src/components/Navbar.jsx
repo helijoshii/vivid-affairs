@@ -11,7 +11,7 @@ const Navbar = () => {
           {NAVBAR_OPTIONS?.map((option) => (
             <li
               key={option.id}
-              className="font-arapey text-base font-normal text-primary-500 cursor-pointer hover:bg-primary-500 hover:text-white hover:m-4"
+              className="font-arapey text-base font-normal text-primary-500 cursor-pointer px-4 py-2 rounded-full hover:bg-primary-500 hover:text-white transition-all duration-200"
             >
               {option.label}
             </li>
