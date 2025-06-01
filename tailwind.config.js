@@ -19,7 +19,8 @@ export default {
       },
       backgroundImage: {
         hero: "url('/public/hero/01_Hero.png')",
-        contactUs: "url('/public/contact/01_contact.jpg')",
+        contactUsOne: "url('/public/contact/01_contact.jpg')",
+        contactUsTwo: "url('/public/contact/02_contact.jpg')",
       },
       fontFamily: {
         antic: ["Antic Didone", "serif"],
@@ -37,6 +38,7 @@ export default {
     },
     container: {
       center: true,
+      padding: "1rem",
       screens: {
         sm: "600px",
         md: "728px",

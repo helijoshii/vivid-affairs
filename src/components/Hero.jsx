@@ -1,28 +1,38 @@
 const Hero = () => {
   return (
-    <div className="relative min-h-screen bg-hero bg-no-repeat bg-cover bg-center flex flex-col justify-end h-[800px]">
+    <div className="relative min-h-screen bg-hero bg-no-repeat bg-[position:center_bottom] md:bg-[position:center] md:bg-cover flex flex-col justify-end md:h-[900px]">
       {/* Overlay */}
       <div className="absolute inset-0 bg-black/35 z-0" />
 
       {/* Content */}
-      <div className="relative z-10 h-full flex items-center justify-end flex-col container gap-5 mb-24">
-        <h1 className="font-antic text-8xl text-white uppercase text-center">
-          Let’s plan <br /> your event together
+      <div className="relative z-10 h-full flex items-center justify-end flex-col container px-4 gap-6 md:gap-4 md:mb-24 mb-16">
+        <h1 className="font-antic text-3xl md:text-6xl text-white uppercase text-center leading-tight tracking-wide w-full">
+          Let’s create
+          <br /> unforgettable moments,
+          <br /> that last forever, <br />
+          tailored just for you.
         </h1>
-        <p className="w-1/2 font-poppins text-white text-center text-base font-normal">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum
+
+        <p className="md:w-3/4 w-full text-center text-[#fffcf4] font-poppins text-xs md:text-base leading tracking-wide">
+          At Vivid Affairs, we believe every celebration deserves a story worth
+          telling — from intimate gatherings to grand affairs. We craft
+          unforgettable experiences rooted in creativity, culture, and class. We
+          bring your vision to life —
+          <span className="font-semibold">
+            seamlessly, beautifully, and beyond expectations.
+          </span>
+          <span className="font-bold block mt-2">
+            Because every celebration deserves elegance, emotion, and a touch of
+            magic.
+          </span>
         </p>
       </div>
 
       {/* Bottom image */}
       <img
-        src={"/public/hero/02_Hero.png"}
-        alt=""
-        className="absolute bottom-0 w-full"
+        src={"/hero/02_Hero.png"}
+        alt="Decorative bottom banner"
+        className="absolute bottom-0 w-full object-cover"
       />
     </div>
   );
