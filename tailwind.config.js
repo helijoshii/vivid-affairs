@@ -16,6 +16,7 @@ export default {
         textColor: "#505050",
         formBackgroundColor: "rgba(53, 30, 0, 0.8)",
         placeHolderColor: "rgba(187, 184, 176, 0.5)",
+        formPlaceHolderColor: "#BBB8B080",
       },
       backgroundImage: {
         hero: "url('/public/hero/01_Hero.png')",
@@ -38,7 +39,7 @@ export default {
     },
     container: {
       center: true,
-      padding: "1rem",
+
       screens: {
         sm: "600px",
         md: "728px",

@@ -20,7 +20,7 @@ const Services = () => {
               </h2>
               <img src="/services/04_services.png" alt="" />
             </div>
-            <div className="flex flex-col gap-4 mt-8 md:w-4/6">
+            <div className="flex flex-col gap-4 mt-8 md:w-3/4">
               <div className="flex items-end justify-center md:justify-start">
                 <h2 className="font-arapey md:text-5xl font-normal text-primary-500 text-4xl md:hidden block ">
                   01.
@@ -108,7 +108,7 @@ const Services = () => {
                   Parties and Celebrations
                 </h4>
               </div>
-              <p className="font-poppins text-base font-normal text-textColor leading-6 md:w-8/12 text-center md:text-left">
+              <p className="font-poppins text-base font-normal text-textColor leading-6 md:w-3/4 text-center md:text-left">
                 At Vivid Affairs from cozy cocktail evenings to extravagant
                 themed parties, we do it all with style. A celebration that
                 reflects your personality, we transform moments into memories
