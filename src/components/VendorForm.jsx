@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { DEPARTMENTS_OPTIONS } from "../utils/constant";
-
+import vendorFormValidation from "../validations/VendorFormValidation";
 const VendorForm = () => {
   const [formData, setFormData] = useState({
     name: "",
@@ -12,10 +12,33 @@ const VendorForm = () => {
     experienceYears: "",
     experienceType: "",
   });
+  const [errors, setErrors] = useState({});
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const { newErrors, isValid } = vendorFormValidation({
+      formData,
+    });
+    if (isValid) {
+      alert("Form submitted successfully");
+      setFormData({
+        name: "",
+        phone: "",
+        email: "",
+        state: "",
+        city: "",
+        department: "",
+        experienceYears: "",
+        experienceType: "",
+      });
+      setErrors({});
+    }
+    setErrors(newErrors);
   };
 
   return (
@@ -24,7 +47,10 @@ const VendorForm = () => {
         Let’s create timeless moments
       </h3>
 
-      <form className="w-full mx-auto bg-formBackgroundColor rounded-[30px] grid md:grid-cols-2 grid-cols-1 md:grid-rows-4 gap-5 md:p-16 md:mt-[30px] mt-3 p-8">
+      <form
+        className="w-full mx-auto bg-formBackgroundColor rounded-[30px] grid lg:grid-cols-2 grid-cols-1 lg:grid-rows-4 gap-5 md:p-16 md:mt-[30px] mt-3 p-8 "
+        onSubmit={handleSubmit}
+      >
         {/* Name */}
         <div>
           <label className="block text-white text-base font-normal uppercase opacity-90 font-Arapey">
@@ -33,11 +59,16 @@ const VendorForm = () => {
           <input
             type="text"
             name="name"
-            className="w-full bg-transparent border-0 border-b border-white border-opacity-30 text-white text-base py-3 px-0 outline-none focus:border-white focus:border-opacity-80 focus:text-white placeholder-white transition-all duration-300 placeholder:text-placeHolderColor"
+            className="w-full bg-transparent border-0 border-b border-white border-opacity-30 text-white text-base py-3 px-0 outline-none focus:border-white focus:border-opacity-80 focus:text-white placeholder-white transition-all duration-300 placeholder:text-placeHolderColor font-poppins"
             placeholder="Jack"
             value={formData.name}
             onChange={handleChange}
           />
+          {errors.name && (
+            <p className="text-red-400 text-sm mt-1 font-poppins">
+              {errors.name}
+            </p>
+          )}
         </div>
         {/* Email */}
         <div>
@@ -47,11 +78,16 @@ const VendorForm = () => {
           <input
             type="email"
             name="email"
-            className="w-full bg-transparent border-0 border-b border-white border-opacity-30 text-white text-base py-3 px-0 outline-none focus:border-white focus:border-opacity-80 focus:text-white placeholder-white placeholder-opacity-50 transition-all duration-300 placeholder:text-placeHolderColor"
+            className="w-full bg-transparent border-0 border-b border-white border-opacity-30 text-white text-base py-3 px-0 outline-none focus:border-white focus:border-opacity-80 focus:text-white placeholder-white placeholder-opacity-50 transition-all duration-300 font-poppins placeholder:text-placeHolderColor"
             placeholder="example@gmail.com"
             value={formData.email}
             onChange={handleChange}
           />
+          {errors?.email && (
+            <p className="text-red-400 text-sm mt-1 font-poppins">
+              {errors.name}
+            </p>
+          )}
         </div>
         {/* Phone */}
         <div>
@@ -61,11 +97,16 @@ const VendorForm = () => {
           <input
             type="tel"
             name="phone"
-            className="w-full bg-transparent border-0 border-b border-white border-opacity-30 text-white text-base py-3 px-0 outline-none focus:border-white focus:border-opacity-80 focus:text-white placeholder-white placeholder-opacity-50 transition-all duration-300 placeholder:text-placeHolderColor"
+            className="w-full bg-transparent border-0 border-b border-white border-opacity-30 text-white text-base py-3 px-0 outline-none focus:border-white focus:border-opacity-80 focus:text-white placeholder-white placeholder-opacity-50 transition-all duration-300 placeholder:text-placeHolderColor font-poppins"
             placeholder="+91 5759689967"
             value={formData.phone}
             onChange={handleChange}
           />
+          {errors?.phone && (
+            <p className="text-red-400 text-sm mt-1 font-poppins">
+              {errors.phone}
+            </p>
+          )}
         </div>
         {/* Location */}
         <div className="relative">
@@ -79,7 +120,7 @@ const VendorForm = () => {
                 name="state"
                 value={formData.state}
                 onChange={handleChange}
-                className="w-full bg-transparent border-0 border-b border-white border-opacity-30 text-white text-base py-3 px-0 pr-6 outline-none focus:border-white focus:border-opacity-80 focus:text-white appearance-none cursor-pointer transition-all duration-300 placeholder:text-placeHolderColor"
+                className="w-full bg-transparent border-0 border-b font-poppins border-white border-opacity-30 text-white text-base py-3 px-0 pr-6 outline-none focus:border-white focus:border-opacity-80 focus:text-white appearance-none cursor-pointer transition-all duration-300 placeholder:text-placeHolderColor"
               >
                 <option value="" className="bg-amber-900 text-placeHolderColor">
                   Select State
@@ -91,7 +132,7 @@ const VendorForm = () => {
                   Maharashtra
                 </option>
               </select>
-              <div className="absolute right-0 top-9 pointer-events-none">
+              <div className="absolute right-0 top-5 pointer-events-none">
                 <svg
                   className="w-4 h-3 text-white text-opacity-70"
                   fill="none"
@@ -106,6 +147,11 @@ const VendorForm = () => {
                   />
                 </svg>
               </div>
+              {errors?.state && (
+                <p className="text-red-400 text-sm mt-1 font-poppins">
+                  {errors.state}
+                </p>
+              )}
             </div>
 
             {/* City */}
@@ -114,7 +160,7 @@ const VendorForm = () => {
                 name="city"
                 value={formData.city}
                 onChange={handleChange}
-                className="w-full bg-transparent border-0 border-b border-white border-opacity-30 text-white text-base py-3 px-0 pr-6 outline-none focus:border-white focus:border-opacity-80 focus:text-white appearance-none cursor-pointer transition-all duration-300 placeholder:text-placeHolderColor"
+                className="w-full bg-transparent border-0 border-b border-white border-opacity-30 text-white text-base py-3 px-0 pr-6 outline-none focus:border-white font-poppins focus:border-opacity-80 focus:text-white appearance-none cursor-pointer transition-all duration-300 placeholder:text-placeHolderColor"
               >
                 <option value="" className="bg-amber-900 text-placeHolderColor">
                   Select City
@@ -126,7 +172,7 @@ const VendorForm = () => {
                   Mumbai
                 </option>
               </select>
-              <div className="absolute right-0 top-9 pointer-events-none">
+              <div className="absolute right-0 top-5 pointer-events-none">
                 <svg
                   className="w-4 h-3 text-white text-opacity-70"
                   fill="none"
@@ -141,6 +187,11 @@ const VendorForm = () => {
                   />
                 </svg>
               </div>
+              {errors?.city && (
+                <p className="text-red-400 text-sm mt-1 font-poppins">
+                  {errors.city}
+                </p>
+              )}
             </div>
           </div>
         </div>
@@ -153,7 +204,7 @@ const VendorForm = () => {
             name="department"
             value={formData.department}
             onChange={handleChange}
-            className="w-full bg-transparent border-0 border-b border-white border-opacity-30 text-white text-base py-3 px-0 pr-6 outline-none focus:border-white focus:border-opacity-80 focus:text-white appearance-none cursor-pointer transition-all duration-300 placeholder:text-placeHolderColor"
+            className="w-full bg-transparent border-0 border-b font-poppins border-white border-opacity-30 text-white text-base py-3 px-0 pr-6 outline-none focus:border-white focus:border-opacity-80 focus:text-white appearance-none cursor-pointer transition-all duration-300 placeholder:text-placeHolderColor"
           >
             <option value="" className="bg-amber-900 text-placeHolderColor">
               Select Department
@@ -169,7 +220,7 @@ const VendorForm = () => {
             ))}
           </select>
 
-          <div className="absolute right-0 top-9 pointer-events-none">
+          <div className="absolute right-0 top-10 pointer-events-none">
             <svg
               className="w-4 h-3 text-white text-opacity-70"
               fill="none"
@@ -184,6 +235,11 @@ const VendorForm = () => {
               />
             </svg>
           </div>
+          {errors?.department && (
+            <p className="text-red-400 text-sm mt-1 font-poppins">
+              {errors.department}
+            </p>
+          )}
         </div>
         {/* Work Experience */}
         <div className="relative">
@@ -197,7 +253,7 @@ const VendorForm = () => {
                 name="experienceYears"
                 value={formData.experienceYears}
                 onChange={handleChange}
-                className="w-full bg-transparent border-0 border-b border-white border-opacity-30 text-white text-base py-3 px-0 pr-6 outline-none focus:border-white focus:border-opacity-80 focus:text-white appearance-none cursor-pointer transition-all duration-300 placeholder:text-placeHolderColor"
+                className="w-full bg-transparent border-0 border-b font-poppins border-white border-opacity-30 text-white text-base py-3 px-0 pr-6 outline-none focus:border-white focus:border-opacity-80 focus:text-white appearance-none cursor-pointer transition-all duration-300 placeholder:text-placeHolderColor"
               >
                 <option value="" className="bg-amber-900 text-placeHolderColor">
                   Years
@@ -212,7 +268,7 @@ const VendorForm = () => {
                   3+ Years
                 </option>
               </select>
-              <div className="absolute right-0 top-9 pointer-events-none">
+              <div className="absolute right-0 top-5 pointer-events-none">
                 <svg
                   className="w-4 h-3 text-white text-opacity-70"
                   fill="none"
@@ -227,6 +283,11 @@ const VendorForm = () => {
                   />
                 </svg>
               </div>
+              {errors?.experienceYears && (
+                <p className="text-red-400 text-sm mt-1 font-poppins">
+                  {errors.experienceYears}
+                </p>
+              )}
             </div>
 
             {/* Experience Type */}
@@ -235,7 +296,7 @@ const VendorForm = () => {
                 name="experienceType"
                 value={formData.experienceType}
                 onChange={handleChange}
-                className="w-full bg-transparent border-0 border-b border-white border-opacity-30 text-white text-base py-3 px-0 pr-6 outline-none focus:border-white focus:border-opacity-80 focus:text-white appearance-none cursor-pointer transition-all duration-300 placeholder:text-placeHolderColor"
+                className="w-full bg-transparent border-0 border-b font-poppins border-white border-opacity-30 text-white text-base py-3 px-0 pr-6 outline-none focus:border-white focus:border-opacity-80 focus:text-white appearance-none cursor-pointer transition-all duration-300 placeholder:text-placeHolderColor"
               >
                 <option value="" className="bg-amber-900 text-placeHolderColor">
                   Experience Type
@@ -250,7 +311,7 @@ const VendorForm = () => {
                   Both
                 </option>
               </select>
-              <div className="absolute right-0 top-9 pointer-events-none">
+              <div className="absolute right-0 top-5 pointer-events-none">
                 <svg
                   className="w-4 h-3 text-white text-opacity-70"
                   fill="none"
@@ -265,13 +326,18 @@ const VendorForm = () => {
                   />
                 </svg>
               </div>
+              {errors?.experienceType && (
+                <p className="text-red-400 text-sm mt-1 font-poppins">
+                  {errors.experienceType}
+                </p>
+              )}
             </div>
           </div>
         </div>
         <div className="pt-4">
           <button
             type="submit"
-            className="bg-white font-arapey bg-opacity-90 hover:bg-white text-amber-900 font-medium text-sm tracking-widest uppercase py-3 px-8 rounded-full transition-all duration-300 hover:transform hover:-translate-y-0.5 hover:shadow-lg"
+            className="bg-backgroundColor font-arapey bg-opacity-90 text-primary-500 font-normal text-sm md:text-base tracking-widest uppercase py-3 px-8 rounded-full transition-all duration-300 hover:transform hover:-translate-y-0.5 hover:shadow-lg"
           >
             Submit
           </button>

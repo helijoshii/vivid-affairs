@@ -16,12 +16,15 @@ export default {
         textColor: "#505050",
         formBackgroundColor: "rgba(53, 30, 0, 0.8)",
         placeHolderColor: "rgba(187, 184, 176, 0.5)",
+        formPlaceHolderColor: "#BBB8B080",
       },
       backgroundImage: {
         hero: "url('/public/hero/01_Hero.png')",
+        heroMobile: "url('/public/hero/03_Hero.jpeg')",
         contactUsOne: "url('/public/contact/01_contact.jpg')",
         contactUsTwo: "url('/public/contact/02_contact.jpg')",
       },
+
       fontFamily: {
         antic: ["Antic Didone", "serif"],
         arapey: ["Arapey", "serif"],
@@ -42,7 +45,7 @@ export default {
       screens: {
         sm: "600px",
         md: "728px",
-        lg: "984px",
+        lg: "700px",
         xl: "1195px",
       },
     },

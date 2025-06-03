@@ -4,11 +4,11 @@ export const TABS_OPTIONS = [
 ];
 
 export const NAVBAR_OPTIONS = [
-  { id: "home", label: "HOME" },
-  { id: "about", label: "ABOUT" },
-  { id: "services", label: "SERVICES" },
-  { id: "contact", label: "CONTACT US" },
-  { id: "vendor", label: "VENDOR COLLABORATION" },
+  { id: "home", label: "HOME", redirectTo: "#home" },
+  { id: "about", label: "ABOUT", redirectTo: "#about" },
+  { id: "services", label: "SERVICES", redirectTo: "#services" },
+  { id: "contact", label: "CONTACT US", redirectTo: "#contact" },
+  { id: "vendor", label: "VENDOR COLLABORATION", redirectTo: "vendor" },
 ];
 
 export const DEPARTMENTS_OPTIONS = [

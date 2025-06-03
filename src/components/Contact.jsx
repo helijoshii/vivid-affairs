@@ -15,7 +15,7 @@ const Contact = () => {
       <div className="container h-full">
         <div className="pt-10">
           <div className="flex items-center justify-center">
-            <div className="flex gap-2 bg-white rounded-[100px] h-[50px] p-1 md:w-2/5 w-full">
+            <div className="flex gap-2 bg-backgroundColor rounded-[100px] h-[50px] p-1 x:w-2/5 w-full">
               {TABS_OPTIONS?.map((tab) => (
                 <button
                   key={tab.id}
@@ -23,7 +23,7 @@ const Contact = () => {
                   className={`w-full h-full rounded-full tracking-wide transition-all duration-300 font-arapey font-normal whitespace-nowrap md:text-base text-sm px-2 md:px-auto
                     ${
                       activeTab === tab.id
-                        ? "bg-primary-500 text-white"
+                        ? "bg-primary-500 text-backgroundColor"
                         : "text-primary-500"
                     }`}
                 >
