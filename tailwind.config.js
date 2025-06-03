@@ -20,9 +20,11 @@ export default {
       },
       backgroundImage: {
         hero: "url('/public/hero/01_Hero.png')",
+        heroMobile: "url('/public/hero/03_Hero.jpeg')",
         contactUsOne: "url('/public/contact/01_contact.jpg')",
         contactUsTwo: "url('/public/contact/02_contact.jpg')",
       },
+
       fontFamily: {
         antic: ["Antic Didone", "serif"],
         arapey: ["Arapey", "serif"],
@@ -39,11 +41,11 @@ export default {
     },
     container: {
       center: true,
-
+      padding: "1rem",
       screens: {
         sm: "600px",
         md: "728px",
-        lg: "984px",
+        lg: "700px",
         xl: "1195px",
       },
     },

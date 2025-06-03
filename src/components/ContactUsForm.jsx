@@ -38,7 +38,7 @@ const ContactUsForm = () => {
 
       <form
         onSubmit={handleSubmit}
-        className="w-full mx-auto bg-formBackgroundColor rounded-[30px] grid md:grid-cols-2 gap-5 md:p-16 md:mt-[30px] p-8 mt-3"
+        className="w-full mx-auto bg-formBackgroundColor rounded-[30px] grid lg:grid-cols-2 gap-5 md:p-16 md:mt-[30px] p-8 mt-3"
       >
         {/* Name */}
         <div>
@@ -137,7 +137,7 @@ const ContactUsForm = () => {
             </option>
           </select>
 
-          <div className="absolute right-0 top-9 pointer-events-none">
+          <div className="absolute right-0 top-10 pointer-events-none">
             <svg
               className="w-4 h-3 text-white text-opacity-70"
               fill="none"

@@ -48,7 +48,7 @@ const VendorForm = () => {
       </h3>
 
       <form
-        className="w-full mx-auto bg-formBackgroundColor rounded-[30px] grid md:grid-cols-2 grid-cols-1 md:grid-rows-4 gap-5 md:p-16 md:mt-[30px] mt-3 p-8 "
+        className="w-full mx-auto bg-formBackgroundColor rounded-[30px] grid lg:grid-cols-2 grid-cols-1 lg:grid-rows-4 gap-5 md:p-16 md:mt-[30px] mt-3 p-8 "
         onSubmit={handleSubmit}
       >
         {/* Name */}
@@ -132,7 +132,7 @@ const VendorForm = () => {
                   Maharashtra
                 </option>
               </select>
-              <div className="absolute right-0 top-9 pointer-events-none">
+              <div className="absolute right-0 top-5 pointer-events-none">
                 <svg
                   className="w-4 h-3 text-white text-opacity-70"
                   fill="none"
@@ -172,7 +172,7 @@ const VendorForm = () => {
                   Mumbai
                 </option>
               </select>
-              <div className="absolute right-0 top-9 pointer-events-none">
+              <div className="absolute right-0 top-5 pointer-events-none">
                 <svg
                   className="w-4 h-3 text-white text-opacity-70"
                   fill="none"
@@ -220,7 +220,7 @@ const VendorForm = () => {
             ))}
           </select>
 
-          <div className="absolute right-0 top-9 pointer-events-none">
+          <div className="absolute right-0 top-10 pointer-events-none">
             <svg
               className="w-4 h-3 text-white text-opacity-70"
               fill="none"
@@ -268,7 +268,7 @@ const VendorForm = () => {
                   3+ Years
                 </option>
               </select>
-              <div className="absolute right-0 top-9 pointer-events-none">
+              <div className="absolute right-0 top-5 pointer-events-none">
                 <svg
                   className="w-4 h-3 text-white text-opacity-70"
                   fill="none"
@@ -311,7 +311,7 @@ const VendorForm = () => {
                   Both
                 </option>
               </select>
-              <div className="absolute right-0 top-9 pointer-events-none">
+              <div className="absolute right-0 top-5 pointer-events-none">
                 <svg
                   className="w-4 h-3 text-white text-opacity-70"
                   fill="none"

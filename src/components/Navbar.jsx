@@ -1,6 +1,8 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { NAVBAR_OPTIONS } from "../utils/constant";
 import { X } from "lucide-react";
+import { HashLink } from "react-router-hash-link";
+
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -8,17 +10,40 @@ const Navbar = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
+  useEffect(() => {
+    if (isMenuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+
+    // Cleanup on unmount
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isMenuOpen]);
+
   return (
     <div className="relative h-24 flex items-center">
       <img
+        src="/navbar/04_Flower.png"
+        alt="daspfm"
+        className="absolute top-7 lg:hidden"
+      />
+      <img
+        src="/navbar/05_Flower.png"
+        alt="daspfm"
+        className="absolute right-0 top-1 lg:hidden"
+      />
+      <img
         src="/navbar/02_Flower.png"
         alt="daspfm"
-        className="absolute top-1 hidden md:block"
+        className="absolute top-1 hidden lg:block xl:block"
       />
       <img
         src="/navbar/03_Flower.png"
         alt=""
-        className="absolute top-1 right-0 hidden md:block"
+        className="absolute top-1 right-0 hidden xl:block lg:block"
       />
 
       <div className="bg-white flex items-center container justify-between w-full px-4 md:px-0">
@@ -26,22 +51,24 @@ const Navbar = () => {
           <img src="/navbar/01_Logo.png" alt="" className="h-full w-20" />
         </div>
 
-        <div className="hidden md:block">
-          <ul className="flex gap-8">
+        <div className="hidden lg:block">
+          <ul className="flex gap-0 xl:gap-8">
             {NAVBAR_OPTIONS?.map((option) => (
-              <li
-                key={option.id}
-                className="font-arapey text-base font-normal text-primary-500 cursor-pointer px-4 py-2 rounded-full hover:bg-primary-500 hover:text-white transition-all duration-200"
-              >
-                {option.label}
-              </li>
+              <HashLink key={option.id} to={option.redirectTo}>
+                <li
+                  key={option.id}
+                  className="font-arapey xl:text-base lg:text-sm md:text-base font-normal text-primary-500 cursor-pointer lg:px-4 md:px-0 py-2 rounded-full hover:bg-primary-500 hover:text-white transition-all duration-200"
+                >
+                  {option.label}
+                </li>
+              </HashLink>
             ))}
           </ul>
         </div>
 
         <button
           onClick={toggleMenu}
-          className="md:hidden flex flex-col justify-center items-center w-8 h-8 space-y-1 z-50"
+          className="lg:hidden flex flex-col justify-center items-center w-8 h-8 space-y-1 z-50"
           aria-label="Toggle menu"
         >
           <span
@@ -64,7 +91,7 @@ const Navbar = () => {
 
       {/* Mobile Menu Overlay with Blur */}
       <div
-        className={`md:hidden fixed inset-0 bg-black/20 backdrop-blur-md z-40 transition-all duration-500 ${
+        className={`lg:hidden fixed inset-0 bg-black/20 backdrop-blur-md z-40 transition-all duration-500 ${
           isMenuOpen ? "opacity-100" : "opacity-0 pointer-events-none"
         }`}
         onClick={toggleMenu}
@@ -72,7 +99,7 @@ const Navbar = () => {
 
       {/* Modern Mobile Menu Drawer */}
       <div
-        className={`md:hidden fixed top-0 right-0 h-full w-80 bg-white shadow-2xl border-l border-gray-200 z-50 transform transition-all duration-500 ease-out ${
+        className={`lg:hidden fixed top-0 right-0 h-full w-80 bg-backgroundColor shadow-2xl border-l border-gray-200 z-50 transform transition-all duration-500 ease-out ${
           isMenuOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >

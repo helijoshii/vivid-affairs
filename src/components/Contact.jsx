@@ -15,7 +15,7 @@ const Contact = () => {
       <div className="container h-full">
         <div className="pt-10">
           <div className="flex items-center justify-center">
-            <div className="flex gap-2 bg-backgroundColor rounded-[100px] h-[50px] p-1 md:w-2/5 w-full">
+            <div className="flex gap-2 bg-backgroundColor rounded-[100px] h-[50px] p-1 x:w-2/5 w-full">
               {TABS_OPTIONS?.map((tab) => (
                 <button
                   key={tab.id}
