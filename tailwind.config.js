@@ -12,7 +12,7 @@ export default {
           500: "#402502",
           600: "#0A0600",
         },
-        backgroundColor: "#fffcf4", // ✅ define a named color like this
+        backgroundColor: "#fffcf4",
         textColor: "#505050",
         formBackgroundColor: "rgba(53, 30, 0, 0.8)",
         placeHolderColor: "rgba(187, 184, 176, 0.5)",

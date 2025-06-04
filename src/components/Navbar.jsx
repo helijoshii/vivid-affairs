@@ -128,19 +128,17 @@ const Navbar = () => {
                   transitionDelay: isMenuOpen ? `${index * 50}ms` : "0ms",
                 }}
               >
-                <a
-                  href="#"
-                  className="group relative block font-arapey text-sm font-normal text-primary-600 cursor-pointer py-4 px-2 rounded-2xl border border-transparent hover:border-primary-500 hover:bg-primary-500 hover:text-white transition-all duration-300 overflow-hidden"
+                <HashLink
+                  to={option.redirectTo}
+                  smooth
                   onClick={toggleMenu}
+                  className="group relative block font-arapey text-sm font-normal text-primary-600 cursor-pointer py-4 px-2 rounded-2xl border border-transparent hover:border-primary-500 hover:bg-primary-500 hover:text-white transition-all duration-300 overflow-hidden"
                 >
-                  {/* Hover effect background */}
                   <div className="absolute inset-0 bg-gradient-to-r from-primary-500/0 via-primary-500/5 to-primary-500/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-
-                  {/* Text with subtle animation */}
                   <span className="relative z-10 group-hover:text-primary-700 transition-colors duration-300">
                     {option.label}
                   </span>
-                </a>
+                </HashLink>
               </div>
             ))}
           </nav>
