@@ -50,7 +50,7 @@ const ContactUsForm = () => {
             name="name"
             className={`w-full bg-transparent font-poppins border-0 border-b ${
               errors.name ? "border-red-500" : "border-white border-opacity-30"
-            } text-white text-opacity-70 text-base py-3 px-0 outline-none focus:border-white focus:border-opacity-80 focus:text-white placeholder-opacity-50 transition-all duration-300 placeholder:text-formPlaceHolderColor`}
+            } text-white text-opacity-70 text-base py-3 px-0 outline-none focus:border-white focus:border-opacity-80 focus:text-white placeholder-opacity-50 transition-all duration-300 placeholder:text-placeHolderColor`}
             placeholder="Jack"
             value={formData.name}
             onChange={handleChange}
@@ -113,7 +113,9 @@ const ContactUsForm = () => {
               errors.eventType
                 ? "border-red-500"
                 : "border-white border-opacity-30"
-            } text-backgroundColor text-opacity-70 text-base py-3 px-0 pr-6 outline-none focus:border-white focus:border-opacity-80 focus:text-white appearance-none cursor-pointer transition-all duration-300 placeholder:text-formPlaceHolderColor`}
+            } text-base py-3 px-0 pr-6 outline-none appearance-none cursor-pointer transition-all duration-300
+  ${formData.eventType === "" ? "text-placeHolderColor" : "text-white"}
+  focus:border-white focus:border-opacity-80 focus:text-white`}
             value={formData.eventType}
             onChange={handleChange}
           >
@@ -128,12 +130,6 @@ const ContactUsForm = () => {
             </option>
             <option value="birthday" className="bg-amber-900 text-white">
               Birthday Party
-            </option>
-            <option value="anniversary" className="bg-amber-900 text-white">
-              Anniversary
-            </option>
-            <option value="other" className="bg-amber-900 text-white">
-              Other
             </option>
           </select>
 

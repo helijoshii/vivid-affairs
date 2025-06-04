@@ -3,7 +3,7 @@ import validator from "validator";
 const vendorFormValidation = ({ formData }) => {
   const newErrors = {};
 
-  if (validator.isEmpty(formData.name)) {
+  if (validator.isEmpty(formData.name.trim())) {
     newErrors.name = "Name is required.";
   }
 
@@ -27,12 +27,23 @@ const vendorFormValidation = ({ formData }) => {
     newErrors.department = "Please select a department.";
   }
 
-  if (validator.isEmpty(formData.experienceYears)) {
-    newErrors.experienceYears = "Please select experience in years.";
+  if (
+    validator.isEmpty(formData.experienceYears) ||
+    !validator.isInt(formData.experienceYears, { min: 0, max: 99 })
+  ) {
+    newErrors.experienceYears = "Enter valid years of experience.";
   }
 
-  if (validator.isEmpty(formData.experienceType)) {
-    newErrors.experienceType = "Please select experience type.";
+  if (!validator.isInt(formData.experienceMonths, { min: 1, max: 12 })) {
+    newErrors.experienceMonths = "Enter valid months (1–12).";
+  }
+
+  if (
+    validator.isEmpty(formData.portfolio) ||
+    (!validator.isURL(formData.portfolio) &&
+      !validator.isFQDN(formData.portfolio))
+  ) {
+    newErrors.portfolio = "Enter a valid portfolio URL or domain.";
   }
 
   return { newErrors, isValid: Object.keys(newErrors).length === 0 };
