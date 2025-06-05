@@ -69,7 +69,7 @@ const Services = () => {
               <h2 className="font-arapey text-5xl font-normal text-primary-500 hidden xl:block">
                 02.
               </h2>
-              <img src="/services/05_services.png" alt="" />
+              <img src="/services/05_services.png" alt="" className="" />
               <img
                 src="/services/11_services.png"
                 alt=""

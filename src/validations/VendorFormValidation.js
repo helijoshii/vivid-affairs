@@ -27,15 +27,30 @@ const vendorFormValidation = ({ formData }) => {
     newErrors.department = "Please select a department.";
   }
 
-  if (
-    validator.isEmpty(formData.experienceYears) ||
-    !validator.isInt(formData.experienceYears, { min: 0, max: 99 })
-  ) {
+  const experienceYears = formData.experienceYears?.toString().trim() || "";
+  const experienceMonths = formData.experienceMonths?.toString().trim() || "";
+
+  const yearsValid =
+    !validator.isEmpty(experienceYears) &&
+    validator.isInt(experienceYears, { min: 0, max: 99 });
+
+  const monthsValid = validator.isInt(experienceMonths, { min: 0, max: 11 });
+
+  if (!yearsValid) {
     newErrors.experienceYears = "Enter valid years of experience.";
   }
 
-  if (!validator.isInt(formData.experienceMonths, { min: 1, max: 12 })) {
-    newErrors.experienceMonths = "Enter valid months (1–12).";
+  if (!monthsValid) {
+    newErrors.experienceMonths = "Enter valid months (0–11).";
+  }
+
+  if (
+    validator.isInt(experienceYears, { min: 0 }) &&
+    validator.isInt(experienceMonths, { min: 0 }) &&
+    parseInt(experienceYears) === 0 &&
+    parseInt(experienceMonths) === 0
+  ) {
+    newErrors.experienceMonths = "Experience cannot be zero.";
   }
 
   if (
