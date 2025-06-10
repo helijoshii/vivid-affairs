@@ -13,7 +13,7 @@ const Hero = () => {
           tailored just for you.
         </h1>
 
-        <p className="md:w-3/4 w-full text-center text-backgroundColor font-poppins text-xs md:text-sm lg:text-base leading tracking-wide font-normal animate-slide-up-delayed opacity-0 [animation-fill-mode:forwards]">
+        <p className="md:w-3/4 w-full text-justify text-backgroundColor font-poppins text-xs md:text-sm lg:text-base leading tracking-wide font-normal animate-slide-up-delayed opacity-0 [animation-fill-mode:forwards]">
           At Vivid Affairs, we believe every celebration deserves a story worth
           telling — from intimate gatherings to grand affairs. We craft
           unforgettable experiences rooted in creativity, culture, and class. We

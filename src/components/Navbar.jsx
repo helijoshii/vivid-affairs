@@ -2,10 +2,12 @@ import { useEffect, useState } from "react";
 import { NAVBAR_OPTIONS } from "../utils/constant";
 import { X } from "lucide-react";
 import { HashLink } from "react-router-hash-link";
+import { setActiveTab, useThemeContext } from "../context/ThemeContext";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isSticky, setIsSticky] = useState(false);
+  const [, dispatch] = useThemeContext();
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -102,6 +104,7 @@ const Navbar = () => {
                 <li
                   className="font-arapey xl:text-base lg:text-sm md:text-base font-normal text-primary-500 cursor-pointer lg:px-4 md:px-0 py-2 rounded-full hover:bg-primary-500 hover:text-white transition-all duration-200"
                   style={{ transitionDelay: `${index * 50}ms` }}
+                  onClick={() => setActiveTab(dispatch, option.id)}
                 >
                   {option.label}
                 </li>
@@ -181,7 +184,10 @@ const Navbar = () => {
                   className="group relative block font-arapey text-sm font-normal text-primary-600 cursor-pointer py-4 px-2 rounded-2xl border border-transparent hover:border-primary-500 hover:bg-primary-500 hover:text-white transition-all duration-300 overflow-hidden"
                 >
                   <div className="absolute inset-0 bg-gradient-to-r from-primary-500/0 via-primary-500/5 to-primary-500/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                  <span className="relative z-10 group-hover:text-primary-700 transition-colors duration-300">
+                  <span
+                    className="relative z-10 group-hover:text-primary-700 transition-colors duration-300"
+                    onClick={() => setActiveTab(dispatch, option.id)}
+                  >
                     {option.label}
                   </span>
                 </HashLink>

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import contactUsFormValidation from "../validations/ContactUsFormValidation";
+import { TYPE_OF_EVENTS_OPTIONS } from "../utils/constant";
 const ContactUsForm = () => {
   const [formData, setFormData] = useState({
     name: "",
@@ -32,7 +33,7 @@ const ContactUsForm = () => {
 
   return (
     <div className="md:mt-[40px] mt-5">
-      <h3 className="font-poppins md:text-xl font-normal uppercase text-white text-center text-sm animate-fade-in">
+      <h3 className=" font-arapey font-normal md:text-xl uppercase text-white text-center text-sm animate-fade-in">
         request a callback
       </h3>
 
@@ -42,7 +43,10 @@ const ContactUsForm = () => {
         style={{ animationDelay: "0.2s" }}
       >
         {/* Name */}
-        <div className="animate-slide-up opacity-0 [animation-fill-mode:forwards]" style={{ animationDelay: "0.3s" }}>
+        <div
+          className="animate-slide-up opacity-0 [animation-fill-mode:forwards]"
+          style={{ animationDelay: "0.3s" }}
+        >
           <label className="block text-white text-base font-normal uppercase opacity-90 font-Arapey">
             Name *
           </label>
@@ -64,7 +68,10 @@ const ContactUsForm = () => {
         </div>
 
         {/* Phone */}
-        <div className="animate-slide-up opacity-0 [animation-fill-mode:forwards]" style={{ animationDelay: "0.4s" }}>
+        <div
+          className="animate-slide-up opacity-0 [animation-fill-mode:forwards]"
+          style={{ animationDelay: "0.4s" }}
+        >
           <label className="block text-white text-base font-normal uppercase opacity-90 font-Arapey">
             Mobile Number *
           </label>
@@ -84,7 +91,10 @@ const ContactUsForm = () => {
         </div>
 
         {/* Email */}
-        <div className="animate-slide-up opacity-0 [animation-fill-mode:forwards]" style={{ animationDelay: "0.5s" }}>
+        <div
+          className="animate-slide-up opacity-0 [animation-fill-mode:forwards]"
+          style={{ animationDelay: "0.5s" }}
+        >
           <label className="block text-white text-base font-normal uppercase opacity-90 font-Arapey">
             Email *
           </label>
@@ -104,7 +114,10 @@ const ContactUsForm = () => {
         </div>
 
         {/* Event Type */}
-        <div className="relative animate-slide-up opacity-0 [animation-fill-mode:forwards]" style={{ animationDelay: "0.6s" }}>
+        <div
+          className="relative animate-slide-up opacity-0 [animation-fill-mode:forwards]"
+          style={{ animationDelay: "0.6s" }}
+        >
           <label className="block text-white text-base font-normal uppercase opacity-90 font-Arapey">
             Type of Events *
           </label>
@@ -123,15 +136,15 @@ const ContactUsForm = () => {
             <option value="" className="bg-amber-900 text-formPlaceHolderColor">
               Select
             </option>
-            <option value="wedding" className="bg-amber-900 text-white">
-              Wedding
-            </option>
-            <option value="corporate" className="bg-amber-900 text-white">
-              Corporate Event
-            </option>
-            <option value="birthday" className="bg-amber-900 text-white">
-              Birthday Party
-            </option>
+            {TYPE_OF_EVENTS_OPTIONS?.map((option, key) => (
+              <option
+                key={key}
+                value={option}
+                className="bg-amber-900 text-white"
+              >
+                {option}
+              </option>
+            ))}
           </select>
 
           <div className="absolute right-0 top-10 pointer-events-none">
@@ -155,7 +168,10 @@ const ContactUsForm = () => {
         </div>
 
         {/* Submit Button */}
-        <div className="pt-4 animate-slide-up opacity-0 [animation-fill-mode:forwards]" style={{ animationDelay: "0.7s" }}>
+        <div
+          className="pt-4 animate-slide-up opacity-0 [animation-fill-mode:forwards]"
+          style={{ animationDelay: "0.7s" }}
+        >
           <button
             type="submit"
             className="bg-backgroundColor bg-opacity-90 font-arapey text-primary-500 font-normal text-sm md:text-base tracking-widest uppercase py-3 px-8 rounded-full transition-all duration-300 hover:transform hover:-translate-y-0.5 hover:shadow-lg"

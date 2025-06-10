@@ -46,7 +46,7 @@ const About = () => {
             <h2 className="font-arapey text-2xl md:text-4xl xl:text-5xl font-normal uppercase mx-auto text-primary-500 md:leading-[64px] text-center xl:text-left w-3/4 md:w-auto animate-slide-up opacity-0 [animation-fill-mode:forwards]">
               It’s Not Just a Party, It’s an Affair.
             </h2>
-            <p className="font-poppins md:text-base font-normal text-textColor leading-6 xl:w-5/6 text-center text-sm xl:text-left animate-slide-up opacity-0 [animation-fill-mode:forwards]">
+            <p className="font-poppins md:text-base font-normal text-textColor leading-6 xl:w-5/6 text-justify text-sm xl:text-justify animate-slide-up opacity-0 [animation-fill-mode:forwards]">
               We don’t just plan events, we create meaningful experiences for
               you. Every moment is crafted with care because for us no
               celebration is too small, no dream too big, every story deserves

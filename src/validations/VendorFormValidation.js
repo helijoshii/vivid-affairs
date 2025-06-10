@@ -19,8 +19,8 @@ const vendorFormValidation = ({ formData }) => {
     newErrors.state = "Please select a state.";
   }
 
-  if (validator.isEmpty(formData.city)) {
-    newErrors.city = "Please select a city.";
+  if (validator.isEmpty(formData.district)) {
+    newErrors.district = "Please select a district.";
   }
 
   if (validator.isEmpty(formData.department)) {
@@ -34,16 +34,8 @@ const vendorFormValidation = ({ formData }) => {
     newErrors.experienceYears = "Enter valid years of experience.";
   }
 
-  if (!validator.isInt(formData.experienceMonths, { min: 1, max: 12 })) {
-    newErrors.experienceMonths = "Enter valid months (1–12).";
-  }
-
-  if (
-    validator.isEmpty(formData.portfolio) ||
-    (!validator.isURL(formData.portfolio) &&
-      !validator.isFQDN(formData.portfolio))
-  ) {
-    newErrors.portfolio = "Enter a valid portfolio URL or domain.";
+  if (!validator.isInt(formData.experienceMonths, { min: 0, max: 11 })) {
+    newErrors.experienceMonths = "Enter valid months (0–11).";
   }
 
   return { newErrors, isValid: Object.keys(newErrors).length === 0 };

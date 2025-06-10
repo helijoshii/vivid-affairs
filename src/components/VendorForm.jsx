@@ -1,20 +1,24 @@
 import { useState } from "react";
-import { DEPARTMENTS_OPTIONS } from "../utils/constant";
+import { DEPARTMENTS_OPTIONS, DISTRICTS_OPTIONS } from "../utils/constant";
 import vendorFormValidation from "../validations/VendorFormValidation";
+import { ChevronDown, Check } from "lucide-react";
+
 const VendorForm = () => {
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
     email: "",
     state: "",
-    city: "",
+    district: "",
     department: "",
     experienceYears: "",
     experienceMonths: "",
     portfolio: "",
   });
-
   const [errors, setErrors] = useState({});
+
+  const [isOpen, setIsOpen] = useState(false);
+  const [selectedItems, setSelectedItems] = useState([]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -47,7 +51,7 @@ const VendorForm = () => {
         phone: "",
         email: "",
         state: "",
-        city: "",
+        district: "",
         department: "",
         experienceYears: "",
         experienceType: "",
@@ -57,9 +61,19 @@ const VendorForm = () => {
     setErrors(newErrors);
   };
 
+  const toggleDropdown = () => {
+    setIsOpen(!isOpen);
+  };
+
+  const toggleItem = (item) => {
+    setSelectedItems((prev) =>
+      prev.includes(item) ? prev.filter((i) => i !== item) : [...prev, item]
+    );
+  };
+
   return (
     <div className="md:mt-[40px] mt-5">
-      <h3 className="font-poppins md:text-xl text-sm font-normal uppercase text-white text-center animate-fade-in">
+      <h3 className=" font-arapey font-normal md:text-xl text-sm uppercase text-white text-center animate-fade-in">
         Let's create timeless moments
       </h3>
 
@@ -144,12 +158,15 @@ const VendorForm = () => {
                 <option value="" className="bg-amber-900 text-white">
                   Select State
                 </option>
-                <option value="gujarat" className="bg-amber-900 text-white">
-                  Gujarat
-                </option>
-                <option value="maharashtra" className="bg-amber-900 text-white">
-                  Maharashtra
-                </option>
+                {Object?.keys(DISTRICTS_OPTIONS).map((state) => (
+                  <option
+                    key={state}
+                    value={state}
+                    className="bg-amber-900 text-white"
+                  >
+                    {state}
+                  </option>
+                ))}
               </select>
 
               <div className="absolute right-0 top-5 pointer-events-none">
@@ -174,31 +191,33 @@ const VendorForm = () => {
               )}
             </div>
 
-            {/* City */}
+            {/* Districts */}
             <div className="relative w-full">
               <select
-                name="city"
-                value={formData.city}
+                name="district"
+                value={formData.district}
+                title={formData.state === "" && "Please select state first"}
+                disabled={formData.state === ""}
                 onChange={handleChange}
                 className={`w-full bg-transparent border-0 border-b border-white border-opacity-30 text-base py-3 px-0 pr-6 outline-none font-poppins appearance-none cursor-pointer transition-all duration-300
-    ${formData.city === "" ? "text-placeHolderColor" : "text-white"}
-    focus:border-white focus:border-opacity-80 focus:text-white`}
+    ${formData.district === "" ? "text-placeHolderColor" : "text-white"}
+    focus:border-white focus:border-opacity-80 focus:text-white ${
+      formData.state === "" && "cursor-not-allowed"
+    }`}
               >
                 <option value="" className="bg-amber-900 text-backgroundColor">
-                  Select City
+                  Select District
                 </option>
-                <option
-                  value="ahmedabad"
-                  className="bg-amber-900 text-backgroundColor"
-                >
-                  Ahmedabad
-                </option>
-                <option
-                  value="mumbai"
-                  className="bg-amber-900 text-backgroundColor"
-                >
-                  Mumbai
-                </option>
+
+                {DISTRICTS_OPTIONS[formData.state]?.map((district) => (
+                  <option
+                    key={district}
+                    value={district}
+                    className="bg-amber-900 text-backgroundColor"
+                  >
+                    {district}
+                  </option>
+                ))}
               </select>
 
               <div className="absolute right-0 top-5 pointer-events-none">
@@ -216,55 +235,91 @@ const VendorForm = () => {
                   />
                 </svg>
               </div>
-              {errors?.city && (
+              {errors?.district && (
                 <p className="text-red-400 text-sm mt-1 font-poppins">
-                  {errors.city}
+                  {errors.district}
                 </p>
               )}
             </div>
           </div>
         </div>
         {/* Department */}
-        <div className="relative animate-slide-up opacity-0 [animation-fill-mode:forwards]">
+        <div className="relative z-10 animate-slide-up opacity-0 [animation-fill-mode:forwards]">
           <label className="block text-white text-base font-normal uppercase opacity-90 font-Arapey">
             Department *
           </label>
-          <select
-            name="department"
-            value={formData.department}
-            onChange={handleChange}
-            className={`w-full bg-transparent border-0 border-b font-poppins border-white border-opacity-30 text-base py-3 px-0 pr-6 outline-none appearance-none cursor-pointer transition-all duration-300
-    ${formData.department === "" ? "text-placeHolderColor" : "text-white"}
-    focus:border-white focus:border-opacity-80 focus:text-white`}
-          >
-            <option value="" className="bg-amber-900 text-backgroundColor">
-              Select Department
-            </option>
-            {DEPARTMENTS_OPTIONS?.map((dept, index) => (
-              <option
-                key={index}
-                value={dept}
-                className="bg-amber-900 text-backgroundColor"
-              >
-                {dept}
-              </option>
-            ))}
-          </select>
 
-          <div className="absolute right-0 top-10 pointer-events-none">
-            <svg
-              className="w-4 h-3 text-white text-opacity-70"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
+          <div className="relative">
+            <div
+              className="border-b bg-transparent cursor-pointer border-placeHolderColor focus:border-white"
+              onClick={toggleDropdown}
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="1.5"
-                d="M19 9l-7 7-7-7"
-              />
-            </svg>
+              <div className="flex items-center justify-between py-3 font-poppins">
+                <div
+                  className={`text-base ${
+                    selectedItems.length > 0
+                      ? "text-white"
+                      : "text-placeHolderColor"
+                  }`}
+                >
+                  {selectedItems.length > 0
+                    ? selectedItems.join(", ")
+                    : "Select Department"}
+                </div>
+                <div className="absolute right-0 top-5 pointer-events-none">
+                  <svg
+                    className="w-4 h-3 text-white text-opacity-70"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="1.5"
+                      d="M19 9l-7 7-7-7"
+                    />
+                  </svg>
+                </div>
+              </div>
+            </div>
+
+            {isOpen && (
+              <div className="absolute top-full left-0 right-0 mt-1 bg-amber-900 rounded-lg shadow-lg z-50 max-h-60 overflow-y-auto ">
+                {/* Individual Items */}
+                {DEPARTMENTS_OPTIONS?.map((option) => {
+                  const isSelected = selectedItems.includes(option);
+                  return (
+                    <div
+                      key={option}
+                      className={`flex items-center p-3 cursor-pointer ${
+                        isSelected
+                          ? "bg-blue-600 border-b-[.5px] border-backgroundColor"
+                          : "hover:bg-blue-600"
+                      }`}
+                      onClick={() => toggleItem(option)}
+                    >
+                      <div className="relative ">
+                        <div
+                          className={`w-4 h-4 border-2 rounded ${
+                            isSelected
+                              ? "bg-blue-500 border-blue-500 "
+                              : "border-gray-300"
+                          }`}
+                        >
+                          {isSelected && (
+                            <Check className="w-3 h-3 text-white absolute top-0.5 left-0.5" />
+                          )}
+                        </div>
+                      </div>
+                      <span className="ml-3 text-white font-poppins">
+                        {option}
+                      </span>
+                    </div>
+                  );
+                })}
+              </div>
+            )}
           </div>
 
           {errors?.department && (
@@ -273,6 +328,7 @@ const VendorForm = () => {
             </p>
           )}
         </div>
+
         {/* Work Experience */}
         <div className="relative col-span-2 lg:col-span-1 animate-slide-up opacity-0 [animation-fill-mode:forwards]">
           <label className="block text-white text-base font-normal uppercase opacity-90 font-Arapey">
@@ -314,9 +370,10 @@ const VendorForm = () => {
             </div>
           </div>
         </div>
-        <div className="col-start-1 col-end-3 animate-slide-up opacity-0 [animation-fill-mode:forwards]">
+
+        <div className="col-start-1 col-end-3 animate-slide-up opacity-0 [animation-fill-mode:forwards] z-0">
           <label className="block text-white text-base font-normal uppercase opacity-90 font-Arapey ">
-            Portfolio *
+            Portfolio
           </label>
           <input
             type="text"
@@ -326,13 +383,8 @@ const VendorForm = () => {
             value={formData.portfolio}
             onChange={handleChange}
           />
-          {errors?.portfolio && (
-            <p className="text-red-400 text-sm mt-1 font-poppins">
-              {errors.portfolio}
-            </p>
-          )}
         </div>
-        <div className="pt-4 animate-slide-up opacity-0 [animation-fill-mode:forwards]">
+        <div className="pt-4 animate-slide-up opacity-0 [animation-fill-mode:forwards] z-0">
           <button
             type="submit"
             className="bg-backgroundColor font-arapey bg-opacity-90 text-primary-500 font-normal text-sm md:text-base tracking-widest uppercase py-3 px-8 rounded-full transition-all duration-300 hover:transform hover:-translate-y-0.5 hover:shadow-lg"

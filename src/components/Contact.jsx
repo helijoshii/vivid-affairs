@@ -2,9 +2,11 @@ import { useState } from "react";
 import { TABS_OPTIONS } from "../utils/constant";
 import ContactUsForm from "./ContactUsForm";
 import VendorForm from "./VendorForm";
+import { setActiveTab, useThemeContext } from "../context/ThemeContext";
 
 const Contact = () => {
-  const [activeTab, setActiveTab] = useState("contact");
+  const [controller, dispatch] = useThemeContext();
+  const { activeTab } = controller;
 
   return (
     <div
@@ -20,7 +22,7 @@ const Contact = () => {
               {TABS_OPTIONS?.map((tab) => (
                 <button
                   key={tab.id}
-                  onClick={() => setActiveTab(tab.id)}
+                  onClick={() => setActiveTab(dispatch, tab.id)}
                   className={`w-full h-full rounded-full tracking-wide transition-all duration-300 font-arapey font-normal whitespace-nowrap md:text-base text-sm px-2 md:px-auto
                     ${
                       activeTab === tab.id
@@ -33,7 +35,10 @@ const Contact = () => {
               ))}
             </div>
           </div>
-          <div className="pb-24 animate-slide-up opacity-0 [animation-fill-mode:forwards]" style={{ animationDelay: "0.3s" }}>
+          <div
+            className="pb-24 animate-slide-up opacity-0 [animation-fill-mode:forwards]"
+            style={{ animationDelay: "0.3s" }}
+          >
             {activeTab === "contact" ? <ContactUsForm /> : <VendorForm />}
           </div>
         </div>
